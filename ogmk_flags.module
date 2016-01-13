@@ -1,0 +1,7 @@
+<?php
+/**
+ * @file
+ * Code for the Commerce Marketplace Flags feature.
+ */
+
+include_once 'ogmk_flags.features.inc';

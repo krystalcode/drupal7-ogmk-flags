@@ -1,0 +1,10 @@
+name = Commerce Marketplace Flags
+description = A module that provides flags for a commerce marketplace.
+core = 7.x
+package = Commerce Marketplace Features
+version = 7.x-0.1
+dependencies[] = flag
+features[features_api][] = api:2
+features[flag][] = ogmk_node_bookmark
+features[flag][] = ogmk_node_follow
+features[flag][] = ogmk_node_like
