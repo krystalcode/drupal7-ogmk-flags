@@ -1,5 +1,5 @@
 name = Commerce Marketplace Flags
-description = A module that provides flags for a commerce marketplace.
+description = A module that provides various flags (e.g. follow, like, bookmark) for a commerce marketplace
 core = 7.x
 package = Commerce Marketplace Features
 version = 7.x-0.1
