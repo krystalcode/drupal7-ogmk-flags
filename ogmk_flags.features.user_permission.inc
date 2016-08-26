@@ -10,6 +10,15 @@
 function ogmk_flags_user_default_permissions() {
   $permissions = array();
 
+  // Exported permission: 'flag ogmk_node_featured'.
+  $permissions['flag ogmk_node_featured'] = array(
+    'name' => 'flag ogmk_node_featured',
+    'roles' => array(
+      'administrator' => 'administrator',
+    ),
+    'module' => 'flag',
+  );
+
   // Exported permission: 'flag ogmk_node_bookmark'.
   $permissions['flag ogmk_node_bookmark'] = array(
     'name' => 'flag ogmk_node_bookmark',
@@ -33,6 +42,15 @@ function ogmk_flags_user_default_permissions() {
     'name' => 'flag ogmk_node_like',
     'roles' => array(
       'authenticated user' => 'authenticated user',
+    ),
+    'module' => 'flag',
+  );
+
+  // Exported permission: 'unflag ogmk_node_featured'.
+  $permissions['unflag ogmk_node_featured'] = array(
+    'name' => 'unflag ogmk_node_featured',
+    'roles' => array(
+      'administrator' => 'administrator',
     ),
     'module' => 'flag',
   );
