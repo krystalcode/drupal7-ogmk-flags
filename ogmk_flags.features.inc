@@ -22,7 +22,7 @@ function ogmk_flags_flag_default_flags() {
   $flags['ogmk_node_featured'] = array(
     'entity_type' => 'node',
     'title' => 'Featured',
-    'global' => 0,
+    'global' => 1,
     'types' => array(
       0 => 'ogmk_product',
       1 => 'ogmk_review',
@@ -35,7 +35,7 @@ function ogmk_flags_flag_default_flags() {
     'unflag_long' => 'Unflag a Featured item in order to remove it from the collection of Featured items. ',
     'unflag_message' => 'You have now unflagged this Featured item.',
     'unflag_denied_text' => '',
-    'link_type' => 'confirm',
+    'link_type' => 'toggle',
     'weight' => 0,
     'show_in_links' => array(
       'full' => 'full',
@@ -44,7 +44,6 @@ function ogmk_flags_flag_default_flags() {
       'info' => 0,
       'ogmk_bootstrap_media' => 0,
       'ogmk_manage_teaser' => 0,
-      'diff_standard' => 0,
       'token' => 0,
     ),
     'show_as_field' => 0,
