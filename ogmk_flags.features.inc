@@ -25,47 +25,6 @@ function ogmk_flags_views_api($module = NULL, $api = NULL) {
  */
 function ogmk_flags_flag_default_flags() {
   $flags = array();
-  // Exported flag: "Featured".
-  $flags['ogmk_node_featured'] = array(
-    'entity_type' => 'node',
-    'title' => 'Featured',
-    'global' => 1,
-    'types' => array(
-      0 => 'ogmk_product',
-      1 => 'ogmk_review',
-      2 => 'ogmk_shop',
-    ),
-    'flag_short' => 'Feature',
-    'flag_long' => 'Flag an item as Featured in order to add it to the collection of Featured items.',
-    'flag_message' => 'You have now flagged this item as featured.',
-    'unflag_short' => 'Unfeature',
-    'unflag_long' => 'Unflag a Featured item in order to remove it from the collection of Featured items. ',
-    'unflag_message' => 'You have now unflagged this Featured item.',
-    'unflag_denied_text' => '',
-    'link_type' => 'toggle',
-    'weight' => 0,
-    'show_in_links' => array(
-      'full' => 'full',
-      'teaser' => 'teaser',
-      'rss' => 0,
-      'info' => 0,
-      'ogmk_bootstrap_media' => 0,
-      'ogmk_manage_teaser' => 0,
-      'token' => 0,
-    ),
-    'show_as_field' => 0,
-    'show_on_form' => 0,
-    'access_author' => '',
-    'show_contextual_link' => FALSE,
-    'i18n' => 0,
-    'flag_confirmation' => 'This item will be flagged as featured',
-    'unflag_confirmation' => 'This item will be unflagged from being featured',
-    'api_version' => 3,
-    'module' => 'ogmk_flags',
-    'locked' => array(
-      0 => 'name',
-    ),
-  );
   // Exported flag: "Bookmark".
   $flags['ogmk_node_bookmark'] = array(
     'entity_type' => 'node',
@@ -93,6 +52,45 @@ function ogmk_flags_flag_default_flags() {
       'ogmk_bootstrap_media' => 0,
       'ogmk_manage_teaser' => 0,
       'diff_standard' => 0,
+      'token' => 0,
+    ),
+    'show_as_field' => 0,
+    'show_on_form' => 0,
+    'access_author' => '',
+    'show_contextual_link' => FALSE,
+    'i18n' => 0,
+    'module' => 'ogmk_flags',
+    'locked' => array(
+      0 => 'name',
+    ),
+    'api_version' => 3,
+  );
+  // Exported flag: "Featured".
+  $flags['ogmk_node_featured'] = array(
+    'entity_type' => 'node',
+    'title' => 'Featured',
+    'global' => 1,
+    'types' => array(
+      0 => 'ogmk_product',
+      1 => 'ogmk_review',
+      2 => 'ogmk_shop',
+    ),
+    'flag_short' => 'Feature',
+    'flag_long' => 'Flag an item as Featured in order to add it to the collection of Featured items.',
+    'flag_message' => 'You have now flagged this item as featured.',
+    'unflag_short' => 'Unfeature',
+    'unflag_long' => 'Unflag a Featured item in order to remove it from the collection of Featured items. ',
+    'unflag_message' => 'You have now unflagged this Featured item.',
+    'unflag_denied_text' => '',
+    'link_type' => 'toggle',
+    'weight' => 0,
+    'show_in_links' => array(
+      'full' => 'full',
+      'teaser' => 'teaser',
+      'rss' => 0,
+      'info' => 0,
+      'ogmk_bootstrap_media' => 0,
+      'ogmk_manage_teaser' => 0,
       'token' => 0,
     ),
     'show_as_field' => 0,
