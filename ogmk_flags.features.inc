@@ -25,6 +25,41 @@ function ogmk_flags_views_api($module = NULL, $api = NULL) {
  */
 function ogmk_flags_flag_default_flags() {
   $flags = array();
+  // Exported flag: "Like".
+  $flags['ogmk_comment_like'] = array(
+    'entity_type' => 'comment',
+    'title' => 'Like',
+    'global' => 0,
+    'types' => array(
+      0 => 'comment_node_ogmk_post',
+      1 => 'comment_node_ogmk_product',
+      2 => 'comment_node_ogmk_review',
+      3 => 'comment_node_ogmk_shop',
+    ),
+    'flag_short' => 'Like',
+    'flag_long' => 'You may like comment to express your admiration for it, or to create your personal collection of favourite comments.',
+    'flag_message' => 'You have now liked this comment.',
+    'unflag_short' => 'Unlike',
+    'unflag_long' => 'You may unlike comment to remove it from your personal collection of favourite comments.',
+    'unflag_message' => 'You have now unliked this comment.',
+    'unflag_denied_text' => '',
+    'link_type' => 'toggle',
+    'weight' => 0,
+    'show_in_links' => array(
+      'full' => 'full',
+      'diff_standard' => 0,
+      'token' => 0,
+    ),
+    'show_as_field' => 0,
+    'show_on_form' => 0,
+    'access_author' => '',
+    'show_contextual_link' => FALSE,
+    'api_version' => 3,
+    'module' => 'ogmk_flags',
+    'locked' => array(
+      0 => 'name',
+    ),
+  );
   // Exported flag: "Bookmark".
   $flags['ogmk_node_bookmark'] = array(
     'entity_type' => 'node',
