@@ -247,6 +247,16 @@ function ogmk_flags_default_icon($flag_name, $flag_status) {
         default:
           break;
       }
+    // Bookmark.
+    case 'ogmk_node_featured':
+      switch ($flag_status) {
+        case 'flagged':
+          return 'star';
+        case 'unflagged':
+          return 'star-o';
+        default:
+          break;
+      }
 
     // Comment flags.
     case 'ogmk_comment_like':
