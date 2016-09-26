@@ -5,3 +5,261 @@
  */
 
 include_once 'ogmk_flags.features.inc';
+
+/**
+ * Public API.
+ */
+
+/**
+ * Creates an action-less flag as a bootstrap button with popover text.
+ *
+ * Anonymous users may not have permissions to flag items in many cases. This
+ * functions creates a flag that upon click presents a popover with informative
+ * text that may contain links to login/registration pages.
+ *
+ * @param string $text    The title of the flag.
+ * @param array  $options An array options. Available options are:
+ *   - sr_only : If set to TRUE, the title will be visible to screen readers only.
+ *   - icon    : A font-awesome icon that will be added just before the title.
+ *   - brand   : The bootstrap brand setting that will be used to style the flag. Default to
+ *               'default' e.g. 'btn-default'.
+ *   - popover : The text that will be displayed in the popover. It may contain (already escaped)
+ *               HTML.
+ *
+ * @return string The HTML for the flag bootstrap button.
+ */
+function ogmk_flags_anonymous_flag($text, array $options = array()) {
+  $render_array = array();
+  $attributes   = array();
+
+  // Create the title.
+  $title = ' ' . t($text);
+
+  // Make the title visible to screen readers only, if requested.
+  if (isset($options['sr_only']) && $options['sr_only']) {
+    $title = '<span class="sr-only">' . $title . '</span>';
+  }
+
+  if (isset($options['icon'])) {
+    $render_array['html'] = TRUE;
+    $title = '<span class="fa fa-' . $options['icon'] . '"></span>' . $title;
+  }
+
+  // Button classes.
+  $button_brand = 'default';
+  if (isset($options['brand'])) {
+    $button_brand = $options['brand'];
+  }
+  $attributes['class'] = array('btn btn-xs btn-' . $button_brand);
+
+  // Popover attributes.
+  if (isset($options['popover'])) {
+    $attributes['data-toggle'] = 'popover';
+    $attributes['data-placement'] = 'bottom';
+    $attributes['data-content'] = $options['popover'];
+    $attributes['data-html'] = 'true';
+  }
+
+  $render_array['title'] = $title;
+  $render_array['attributes'] = $attributes;
+
+  return $render_array;
+}
+
+/**
+ * Provides an action-less flag button with popover text using some defaults.
+ *
+ * Uses ogmk_flags_anonymous_flag to generate an action-less flag bootstrap
+ * button using certain default settings, and providing links to the
+ * login/registration pages that can be used in the popover text.
+ *
+ * @param string $flag_name    The name of the flag.
+ * @param string $popover_text The text that will be displayed in the popover. It may contain
+ *                             (already escaped) HTML, and the following replacement patterns:
+ *                             - !login_link: A link to the login page.
+ *                             - !register_link: A link to the registration page.
+ * @param array  $options An array options. Available options are:
+ *   - sr_only              : If set to TRUE, the title will be visible to screen readers only.
+ *   - destination_path     : The path that the user will be redirected to after login/registration.
+ *                            If not provided, the current path will be used.
+ *   - destination_fragment : A fragment to be added in the destination path.
+ *
+ * @return string The HTML for the flag bootstrap button.
+ *
+ * @see ogmk_flags_anonymous_flag
+ */
+function ogmk_flags_default_anonymous_flag($flag_name, $popover_text, array $options = array()) {
+  // Construct the login and register links.
+  $link_options = array();
+
+  if (isset($options['destination_path'])) {
+    $link_options['query'] = array('destination' => $options['destination_path']);
+  }
+  else {
+    $link_options['query'] = array('destination' => current_path());
+  }
+
+  if (isset($options['destination_fragment'])) {
+    $link_options['fragment'] = $options['destination_fragment'];
+  }
+
+  $login_link    = l(t('login'), 'user/login', $link_options);
+  $register_link = l(t('register'), 'user/register', $link_options);
+
+  // Get the title from the flag definition.
+  $flag = flag_get_flag($flag_name);
+  $flag_title = t($flag->flag_short);
+
+  // Construct the rest of the options.
+  $flag_options = array();
+  $flag_options['icon'] = ogmk_flags_default_icon($flag_name, 'unflagged');
+  $flag_options['popover'] = t(
+    $popover_text,
+    array(
+      '!login_link' => $login_link,
+      '!register_link' => $register_link,
+    )
+  );
+
+  if (isset($options['sr_only'])) {
+    $flag_options['sr_only'] = $options['sr_only'];
+  }
+
+  return ogmk_flags_anonymous_flag($flag_title, $flag_options);
+}
+
+/**
+ * Provides default texts for the ogmk-defined flags.
+ *
+ * The flag module allows for one long text per flag that is used whenever the
+ * flag is displayed. Flags however may apply to multiple content types, or
+ * other entity bundles. This functions provides different texts per flag and
+ * per entity bundle.
+ *
+ * @param string $flag_name     The name of the flag.
+ * @param string $entity_bundle The bunlde of the entity that the flag is currently being used with.
+ *
+ * @return string The default flag long text.
+ */
+function ogmk_flags_default_help_text($flag_name, $entity_bundle) {
+  switch ($flag_name) {
+    // Node flags.
+    // Follow.
+    case 'ogmk_node_follow':
+      switch ($entity_bundle) {
+        case 'ogmk_product':
+          return 'You may follow a post in order to receive notifications when there are updates, such as when there are new comments on it. You can always find the posts you follow in your account section.';
+        case 'ogmk_product':
+          return 'You may follow a product in order to receive notifications when there are updates, such as when its price or availability changes. You can always find the products you follow in your account section.';
+        case 'ogmk_review':
+          return 'You may follow a review in order to receive notifications when there are new responses on it. You can always find the reviews you follow in your account section.';
+        case 'ogmk_shop':
+          return 'You may follow a shop in order to receive notifications when new products are released or about special offers. You can always find the shops that you follow in your account section.';
+        default:
+          break;
+      }
+    // Like.
+    case 'ogmk_node_like':
+      switch($entity_bundle) {
+        case 'ogmk_post':
+          return 'You may like a post to express your admiration for it, or to create your personal collection of favourite posts. You can always find your favourite posts in your account section.';
+        case 'ogmk_product':
+          return 'You may like a product to express your admiration for it, or to create your personal collection of favourite products. You can always find your favourite products in your account section.';
+        case 'ogmk_review':
+          return 'You may like a review if you have found it useful and constructive. You can always find the list of reviews you have liked in your account section.';
+        case 'ogmk_shop':
+          return 'You may like a shop to express your admiration for it, or to create your personal collection of your favourite shops. You can always find you favourite shops in your account section.';
+      }
+    // Bookmark.
+    case 'ogmk_node_bookmark':
+      switch($entity_bundle) {
+        case 'ogmk_post':
+          return 'You may bookmark a post in order to read it at a later point. You can find posts that you have bookmarked in your account section.';
+        case 'ogmk_product':
+          return 'You may bookmark a product in order to view it or purchase it at a later point. You can find products that you have bookmarked in your account section.';
+        case 'ogmk_review':
+          return 'You may bookmark a review in order to read it at a later point. You can find reviews that you have bookmarked in your account section.';
+        case 'ogmk_shop':
+          return 'You may bookmark a shop in order to explore it at a later point. You can find shops that you have bookmarked in your account section.';
+      }
+    // Featured.
+    case 'ogmk_node_featured':
+      switch($entity_bundle) {
+        case 'ogmk_post':
+          return 'You may flag a post as featured in order to add it to the Featured Posts collection that will be displayed in promoted areas on the site.';
+        case 'ogmk_product':
+          return 'You may flag a product as featured in order to add it to the Featured Products collection that will be displayed in promoted areas on the site.';
+        case 'ogmk_review':
+          return 'You may flag a review as featured in order to add it to the Featured Reviews collection that will be displayed in promoted areas on the site.';
+        case 'ogmk_shop':
+          return 'You may flag a shop as featured in order to add it to the Featured Shops collection that will be displayed in promoted areas on the site.';
+      }
+
+    // Comment flags.
+    case 'ogmk_comment_like':
+      return 'You may like a comment to express your admiration for it, or to create your personal collection of favourite comments. You can always find your favourite comments in your account section.';
+
+    default:
+      return '';
+  }
+}
+
+/**
+ * Returns a default icon per flag depending on the flag's status.
+ *
+ * Font awesome icons are assumed.
+ *
+ * @param string $flag_name   The name of the flag.
+ * @param string $flag_status The status of the flag being styled e.g. flagged or unflagged.
+ *
+ * @return string The icon name without the 'fa' prefix.
+ */
+function ogmk_flags_default_icon($flag_name, $flag_status) {
+  switch ($flag_name) {
+    // Node flags.
+    // Follow.
+    case 'ogmk_node_follow':
+      switch ($flag_status) {
+        case 'flagged':
+          return 'sign-out';
+        case 'unflagged':
+          return 'sign-in';
+        default:
+          break;
+      }
+    // Like.
+    case 'ogmk_node_like':
+      switch ($flag_status) {
+        case 'flagged':
+          return 'thumbs-up';
+        case 'unflagged':
+          return 'thumbs-o-up';
+        default:
+          break;
+      }
+    // Bookmark.
+    case 'ogmk_node_bookmark':
+      switch ($flag_status) {
+        case 'flagged':
+          return 'bookmark';
+        case 'unflagged':
+          return 'bookmark-o';
+        default:
+          break;
+      }
+
+    // Comment flags.
+    case 'ogmk_comment_like':
+      switch ($flag_status) {
+        case 'flagged':
+          return 'thumbs-up';
+        case 'unflagged':
+          return 'thumbs-o-up';
+        default:
+          break;
+      }
+
+    default:
+      return '';
+  }
+}
