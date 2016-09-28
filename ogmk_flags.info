@@ -31,6 +31,7 @@ features[user_permission][] = unflag ogmk_node_bookmark
 features[user_permission][] = unflag ogmk_node_featured
 features[user_permission][] = unflag ogmk_node_follow
 features[user_permission][] = unflag ogmk_node_like
+features[variable][] = field_bundle_settings_flagging__ogmk_comment_like
 features[variable][] = field_bundle_settings_flagging__ogmk_node_bookmark
 features[variable][] = field_bundle_settings_flagging__ogmk_node_featured
 features[variable][] = field_bundle_settings_flagging__ogmk_node_follow
