@@ -44,7 +44,7 @@ function ogmk_flags_flag_default_flags() {
     'unflag_message' => 'You have now unliked this comment.',
     'unflag_denied_text' => '',
     'link_type' => 'toggle',
-    'weight' => 0,
+    'weight' => -6,
     'show_in_links' => array(
       'full' => 'full',
       'diff_standard' => 0,
@@ -79,7 +79,7 @@ function ogmk_flags_flag_default_flags() {
     'unflag_message' => 'You have now unbookmarked this item.',
     'unflag_denied_text' => '',
     'link_type' => 'toggle',
-    'weight' => 0,
+    'weight' => -7,
     'show_in_links' => array(
       'full' => 'full',
       'teaser' => 'teaser',
@@ -119,7 +119,7 @@ function ogmk_flags_flag_default_flags() {
     'unflag_message' => 'You have now unflagged this Featured item.',
     'unflag_denied_text' => '',
     'link_type' => 'toggle',
-    'weight' => 0,
+    'weight' => -10,
     'show_in_links' => array(
       'full' => 'full',
       'teaser' => 'teaser',
@@ -159,7 +159,7 @@ function ogmk_flags_flag_default_flags() {
     'unflag_message' => 'You have now stopped following this item.',
     'unflag_denied_text' => '',
     'link_type' => 'toggle',
-    'weight' => 0,
+    'weight' => -8,
     'show_in_links' => array(
       'full' => 'full',
       'teaser' => 'teaser',
@@ -199,7 +199,7 @@ function ogmk_flags_flag_default_flags() {
     'unflag_message' => 'You have now unliked this item.',
     'unflag_denied_text' => '',
     'link_type' => 'toggle',
-    'weight' => 0,
+    'weight' => -9,
     'show_in_links' => array(
       'full' => 'full',
       'teaser' => 'teaser',
