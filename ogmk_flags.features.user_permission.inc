@@ -55,6 +55,15 @@ function ogmk_flags_user_default_permissions() {
     'module' => 'flag',
   );
 
+  // Exported permission: 'flag ogmk_taxonomy_term_follow'.
+  $permissions['flag ogmk_taxonomy_term_follow'] = array(
+    'name' => 'flag ogmk_taxonomy_term_follow',
+    'roles' => array(
+      'authenticated user' => 'authenticated user',
+    ),
+    'module' => 'flag',
+  );
+
   // Exported permission: 'unflag ogmk_comment_like'.
   $permissions['unflag ogmk_comment_like'] = array(
     'name' => 'unflag ogmk_comment_like',
@@ -94,6 +103,15 @@ function ogmk_flags_user_default_permissions() {
   // Exported permission: 'unflag ogmk_node_like'.
   $permissions['unflag ogmk_node_like'] = array(
     'name' => 'unflag ogmk_node_like',
+    'roles' => array(
+      'authenticated user' => 'authenticated user',
+    ),
+    'module' => 'flag',
+  );
+
+  // Exported permission: 'unflag ogmk_taxonomy_term_follow'.
+  $permissions['unflag ogmk_taxonomy_term_follow'] = array(
+    'name' => 'unflag ogmk_taxonomy_term_follow',
     'roles' => array(
       'authenticated user' => 'authenticated user',
     ),

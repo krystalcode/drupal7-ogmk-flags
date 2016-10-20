@@ -277,6 +277,18 @@ function ogmk_flags_default_icon($flag_name, $flag_status) {
           break;
       }
 
+    // Taxonomy term flags.
+    // Follow.
+    case 'ogmk_taxonomy_term_follow':
+      switch ($flag_status) {
+        case 'flagged':
+          return 'sign-out';
+        case 'unflagged':
+          return 'sign-in';
+        default:
+          break;
+      }
+
     default:
       return '';
   }

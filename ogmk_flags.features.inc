@@ -224,6 +224,39 @@ function ogmk_flags_flag_default_flags() {
     ),
     'api_version' => 3,
   );
+  // Exported flag: "Follow".
+  $flags['ogmk_taxonomy_term_follow'] = array(
+    'entity_type' => 'taxonomy_term',
+    'title' => 'Follow',
+    'global' => 0,
+    'types' => array(
+      0 => 'ogmk_categories',
+      1 => 'ogmk_labels',
+      2 => 'ogmk_blog_labels',
+    ),
+    'flag_short' => 'Follow',
+    'flag_long' => 'You may follow a category or a label so that you receive notifications when new content is posted.',
+    'flag_message' => 'You are now following this term.',
+    'unflag_short' => 'Unfollow',
+    'unflag_long' => 'You may unfollow a category or label to stop receiving notifications when new content is posted.',
+    'unflag_message' => 'You have now stopped following this term.',
+    'unflag_denied_text' => '',
+    'link_type' => 'toggle',
+    'weight' => 0,
+    'show_in_links' => array(
+      'full' => 'full',
+      'token' => 0,
+    ),
+    'show_as_field' => 0,
+    'show_on_form' => 0,
+    'access_author' => '',
+    'show_contextual_link' => FALSE,
+    'api_version' => 3,
+    'module' => 'ogmk_flags',
+    'locked' => array(
+      0 => 'name',
+    ),
+  );
   return $flags;
 
 }
