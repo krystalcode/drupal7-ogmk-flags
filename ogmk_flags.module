@@ -147,7 +147,9 @@ function ogmk_flags_default_help_text($flag_name, $entity_bundle) {
     // Follow.
     case 'ogmk_node_follow':
       switch ($entity_bundle) {
-        case 'ogmk_product':
+        case 'ogmk_page':
+          return 'You may follow a page in order to receive notifications when there are updates. You can always find the pages you follow in your account section.';
+        case 'ogmk_post':
           return 'You may follow a post in order to receive notifications when there are updates, such as when there are new comments on it. You can always find the posts you follow in your account section.';
         case 'ogmk_product':
           return 'You may follow a product in order to receive notifications when there are updates, such as when its price or availability changes. You can always find the products you follow in your account section.';
@@ -161,6 +163,8 @@ function ogmk_flags_default_help_text($flag_name, $entity_bundle) {
     // Like.
     case 'ogmk_node_like':
       switch($entity_bundle) {
+        case 'ogmk_page':
+          return 'You may like a page to express your admiration for it, or to create your personal collection of favourite pages. You can always find your favourite pages in your account section.';
         case 'ogmk_post':
           return 'You may like a post to express your admiration for it, or to create your personal collection of favourite posts. You can always find your favourite posts in your account section.';
         case 'ogmk_product':
@@ -173,6 +177,8 @@ function ogmk_flags_default_help_text($flag_name, $entity_bundle) {
     // Bookmark.
     case 'ogmk_node_bookmark':
       switch($entity_bundle) {
+        case 'ogmk_page':
+          return 'You may bookmark a page in order to read it at a later point. You can find pages that you have bookmarked in your account section.';
         case 'ogmk_post':
           return 'You may bookmark a post in order to read it at a later point. You can find posts that you have bookmarked in your account section.';
         case 'ogmk_product':
@@ -185,6 +191,8 @@ function ogmk_flags_default_help_text($flag_name, $entity_bundle) {
     // Featured.
     case 'ogmk_node_featured':
       switch($entity_bundle) {
+        case 'ogmk_page':
+          return 'You may flag a page as featured in order to add it to the Featured Pages collection that will be displayed in promoted areas on the site.';
         case 'ogmk_post':
           return 'You may flag a post as featured in order to add it to the Featured Posts collection that will be displayed in promoted areas on the site.';
         case 'ogmk_product':
