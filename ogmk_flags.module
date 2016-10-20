@@ -125,6 +125,10 @@ function ogmk_flags_default_anonymous_flag($flag_name, $popover_text, array $opt
     $flag_options['sr_only'] = $options['sr_only'];
   }
 
+  if (isset($options['brand'])) {
+    $flag_options['brand'] = $options['brand'];
+  }
+
   return ogmk_flags_anonymous_flag($flag_title, $flag_options);
 }
 
