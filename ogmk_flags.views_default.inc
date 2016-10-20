@@ -209,7 +209,7 @@ function ogmk_flags_views_default_views() {
   $view->description = '';
   $view->tag = 'ogmk, posts, flags';
   $view->base_table = 'node';
-  $view->human_name = 'OGMK User Posts Like';
+  $view->human_name = 'OGMK User Posts Liked';
   $view->core = 7;
   $view->api_version = '3.0';
   $view->disabled = FALSE; /* Edit this to true to make a default view disabled initially */
