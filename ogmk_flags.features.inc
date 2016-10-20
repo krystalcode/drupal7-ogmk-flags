@@ -54,11 +54,11 @@ function ogmk_flags_flag_default_flags() {
     'show_on_form' => 0,
     'access_author' => '',
     'show_contextual_link' => FALSE,
-    'api_version' => 3,
     'module' => 'ogmk_flags',
     'locked' => array(
       0 => 'name',
     ),
+    'api_version' => 3,
   );
   // Exported flag: "Bookmark".
   $flags['ogmk_node_bookmark'] = array(
